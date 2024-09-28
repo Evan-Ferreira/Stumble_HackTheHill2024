@@ -25,7 +25,7 @@ const Notifications: React.FC<{ count: number }> = ({ count }) => {
 
 const Menu: React.FC = () => {
   return (
-    <header className="bg-[#302c2c] p-4 text-white">
+    <header className="bg-[#302c2c] p-2 text-white">
       <div className="container mx-auto flex items-center justify-between px-[15%]">
         <div className="container mx-auto flex items-center justify-start">
           <Link to="/" className="text-2xl font-bold">
@@ -37,8 +37,8 @@ const Menu: React.FC = () => {
           </Link>
           <nav>
             <Link
-              to="/problems"
-              className="mx-4 h-full border-b-2 border-transparent transition-all hover:border-white"
+              to="/"
+              className={`mx-4 h-full border-b-2 transition-all ${window.location.pathname === "/" ? "border-white" : "border-transparent"} hover:border-white`}
             >
               Problems
             </Link>

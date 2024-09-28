@@ -71,7 +71,8 @@ const FilterableList: React.FC = () => {
   const handleRandomChoice = () => {
     const randomIndex = Math.floor(Math.random() * filteredItems.length);
     if (filteredItems.length > 0) {
-      alert(`Randomly Selected: ${filteredItems[randomIndex].name}`);
+      const randomItem = filteredItems[randomIndex];
+      window.location.href = randomItem.link || `/module${randomItem.id}`;
     } else {
       alert("No items to choose from!");
     }
@@ -146,7 +147,7 @@ const FilterableList: React.FC = () => {
             itemName={item.name}
             itemTag={item.tag}
             itemDifficulty={item.difficulty}
-            itemLink={item.link || "/module"}
+            itemLink={item.link || `/module${item.id}`}
           ></Row>
 
           //   <li key={item.id} className="mb-2">

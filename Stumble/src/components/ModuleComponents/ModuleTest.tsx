@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TestDisplay from "./TestDisplay";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -85,13 +86,13 @@ const ModuleTest: React.FC = () => {
         </nav>
       </div>
       <TabPanel value={value} index={0}>
-        Content for Tab 1
+        <TestDisplay score={null}></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Content for Tab 2
+        <TestDisplay score={null}></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Content for Tab 3
+        <TestDisplay score={null}></TestDisplay>
       </TabPanel>
     </div>
   );

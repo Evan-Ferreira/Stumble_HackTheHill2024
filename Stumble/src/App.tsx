@@ -13,7 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/module" element={<ModulePage />} />
+          <Route path="/module1" element={<ModulePage index={1} />} />
+          <Route path="/module2" element={<ModulePage index={2} />} />
+          <Route path="/module3" element={<ModulePage index={3} />} />
+          <Route path="/module4" element={<ModulePage index={4} />} />
+          <Route path="/module5" element={<ModulePage index={5} />} />
         </Routes>
       </Router>
     </div>

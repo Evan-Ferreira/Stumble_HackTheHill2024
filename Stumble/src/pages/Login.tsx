@@ -1,42 +1,62 @@
 import React, { useState } from "react";
 
-const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const Login = () => {
+  const [transcript, setTranscript] = useState("");
+  const [isListening, setIsListening] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+  // Check for browser compatibility
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  // Function to handle speech recognition
+  const startListening = () => {
+    if (!recognition) {
+      alert("Your browser does not support speech recognition.");
+      return;
+    }
+    setIsListening(true);
+    recognition.continuous = true; // Enable continuous recognition
+    recognition.interimResults = true; // Allow interim results
+
+    recognition.onresult = (event) => {
+      let interimTranscript = "";
+      let finalTranscript = "";
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcriptPart = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcriptPart;
+        } else {
+          interimTranscript += transcriptPart;
+        }
+      }
+
+      setTranscript(finalTranscript + interimTranscript);
+    };
+
+    recognition.start();
+  };
+
+  const stopListening = () => {
+    if (recognition) {
+      recognition.stop();
+      setIsListening(false);
+    }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className="voice-to-text">
+      <h1>Voice to Text Transcription</h1>
+      <div className="controls">
+        <button onClick={isListening ? stopListening : startListening}>
+          {isListening ? "Stop Listening" : "Start Listening"}
+        </button>
+      </div>
+      <div className="transcript">
+        <h2>Transcript:</h2>
+        <p>{transcript || "Waiting for your voice..."}</p>
+      </div>
     </div>
   );
 };

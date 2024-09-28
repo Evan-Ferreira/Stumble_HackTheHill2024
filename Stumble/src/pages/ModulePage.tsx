@@ -1,39 +1,35 @@
 import React, { useState } from "react";
-import Menu from "../components/Menu";
 import ModuleActivity from "@/components/ModuleComponents/ModuleActivity";
-import { Module } from "vm";
 import ModuleTest from "@/components/ModuleComponents/ModuleTest";
 import ModuleMenu from "@/components/ModuleComponents/ModuleMenu";
 import ModuleDescription from "@/components/ModuleComponents/ModuleDescription";
+import { moduleDescriptions } from "@/components/Modules/ModuleDescript";
 
-const ModulePage: React.FC = () => {
-  const [code, setCode] = useState<string>("");
-
-  const handleCodeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCode(e.target.value);
-  };
-
-  const handleRunCode = () => {
-    console.log("Running code:", code);
-    // Add logic to run the code
-  };
-
+interface ModulePageProps {
+  index: number;
+}
+const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
+  let content = moduleDescriptions[index - 1];
   return (
     <div className="flex h-screen flex-col bg-[#1a1a1a] ">
       <ModuleMenu></ModuleMenu>
 
       <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
-        <aside className="h-full w-1/2  text-left ">
+        <aside className="h-full w-1/2 text-left">
           <ModuleDescription
-            description={"" || "Module Not Found"}
-          ></ModuleDescription>
+            title={content.title}
+            description={content.description}
+            exampleInput={content.exampleInput}
+            exampleOutput={content.exampleOutput}
+            exampleExplanation={content.exampleExplanation}
+          />
         </aside>
 
         {/* Activity */}
         <main className="h-full flex-grow ">
           <div className=" flex h-1/2 ">
-            <ModuleActivity></ModuleActivity>
+            <ModuleActivity index={index}></ModuleActivity>
           </div>
 
           {/* Test Cases */}
