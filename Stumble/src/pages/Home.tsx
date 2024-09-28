@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
                 ? "bg-blue-500 rounded-full text-white"
                 : ""
             }
-            tileContent={({ date, view }) =>
+            tileContent={({ view }) =>
               view === "month" ? <div className="h-1"></div> : null
             }
           ></Calender>
