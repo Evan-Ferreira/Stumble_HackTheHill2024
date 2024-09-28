@@ -29,8 +29,8 @@ const ModulePage: React.FC = () => {
         </aside>
 
         {/* Activity */}
-        <main className="flex-grow bg-gray-50 p-6">
-          <ModuleActivity></ModuleActivity>
+        <main className="h-full flex-grow bg-gray-50 p-6">
+          <div className="mt-4 flex space-x-4"></div>
 
           {/* Test Cases */}
           <div className="mt-4 flex space-x-4">
