@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
+import createThread from './createThread';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const createWoman = async (name: string, instructions: string) => {
             instructions: instructions,
             model: 'gpt-3.5-turbo-0125',
         });
-        return assistant;
+        return assistant['id'];
     } catch (error) {
         console.log(error);
     }

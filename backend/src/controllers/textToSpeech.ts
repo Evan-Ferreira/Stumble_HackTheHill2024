@@ -12,16 +12,20 @@ const addDash = (text: string) => {
     return text.replace(/\.\s*/g, '. ----- ');
 };
 
-const textToSpeech = async (text: string, name: string): Promise<string> => {
+const textToSpeech = async (
+    text: string,
+    id: string,
+    voice: string
+): Promise<string> => {
     return new Promise<string>(async (resolve, reject) => {
         const input = addDash(text);
         try {
             const audio = await client.generate({
-                voice: 'Rachel',
+                voice: voice,
                 model_id: 'eleven_turbo_v2',
                 text: input,
             });
-            const fileName = `${name}.mp3`;
+            const fileName = `${id}.mp3`;
             const fileStream = createWriteStream(fileName);
 
             audio.pipe(fileStream);

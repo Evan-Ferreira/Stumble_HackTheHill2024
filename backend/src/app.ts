@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import openAIRoute from './routes/openai';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ try {
 } catch (error) {
     console.log(error);
 }
+
+app.use(bodyParser.json());
 
 app.get('/', (req: Request, res: Response) => {
     res.send('hello world');

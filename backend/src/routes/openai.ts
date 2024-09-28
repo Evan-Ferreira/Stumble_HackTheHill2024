@@ -1,6 +1,9 @@
 import express from 'express';
-import talkToWoman from '../controllers/talkToWoman';
-import textToSpeech from '../controllers/textToSpeech';
+import createWoman from '../controllers/openai/createWoman';
+import createThread from '../controllers/openai/createThread';
+import getGrades from '../controllers/openai/getGrades';
+import getWomanResponse from '../controllers/openai/getWomanResponse';
+import addResponse from '../controllers/openai/addResponse';
 const router = express.Router();
 
 const botEngineerPrompts = {
@@ -38,55 +41,71 @@ const botEngineerPrompts = {
     the conversation when you begin to warm up to me',
 };
 
-router.get('/q1', async (req, res) => {
+router.post('/q1', async (req, res) => {
+    let { assistantID, threadID, message } = req.body;
+    if (!assistantID && !threadID) {
+        assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
+        threadID = await createThread();
+    }
     try {
-        const response = await talkToWoman(
-            botEngineerPrompts['q1'],
-            'Can I get your number?'
-        );
-        await textToSpeech(response as string, 'test');
-        console.log(response);
+        const output = await getWomanResponse(assistantID, threadID, message);
+        await addResponse(output, threadID, 'assistant');
+        console.log(output);
+        res.json(output);
     } catch (err) {
         console.log(err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
-router.get('/q2', async (req, res) => {
+router.post('/q2', async (req, res) => {
+    let { assistantID, threadID, message } = req.body;
+    if (!assistantID && !threadID) {
+        assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
+        threadID = await createThread();
+    }
     try {
-        const response = await talkToWoman(
-            botEngineerPrompts['q2'],
-            'Hi my name is Joseph and I like wrestling'
-        );
-        await textToSpeech(response as string, 'test');
-        console.log(response);
+        const output = await getWomanResponse(assistantID, threadID, message);
+        await addResponse(output, threadID, 'assistant');
+        console.log(output);
+        res.json(output);
     } catch (err) {
         console.log(err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
-router.get('/q3', async (req, res) => {
+router.post('/q3', async (req, res) => {
+    let { assistantID, threadID, message } = req.body;
+    if (!assistantID && !threadID) {
+        assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
+        threadID = await createThread();
+    }
     try {
-        const response = await talkToWoman(
-            botEngineerPrompts['q3'],
-            'Can I get your number?'
-        );
-        await textToSpeech(response as string, 'test');
-        console.log(response);
+        const output = await getWomanResponse(assistantID, threadID, message);
+        await addResponse(output, threadID, 'assistant');
+        console.log(output);
+        res.json(output);
     } catch (err) {
         console.log(err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
-router.get('/q4', async (req, res) => {
+router.post('/q4', async (req, res) => {
+    let { assistantID, threadID, message } = req.body;
+    if (!assistantID && !threadID) {
+        assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
+        threadID = await createThread();
+    }
     try {
-        const response = await talkToWoman(
-            botEngineerPrompts['q4'],
-            'Can I get your number?'
-        );
-        await textToSpeech(response as string, 'test');
-        console.log(response);
+        const output = await getWomanResponse(assistantID, threadID, message);
+        await addResponse(output, threadID, 'assistant');
+        console.log(output);
+        res.json(output);
     } catch (err) {
         console.log(err);
+        res.status(500).send('Internal Server Error');
     }
 });
 
