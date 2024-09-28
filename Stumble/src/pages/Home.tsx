@@ -47,35 +47,37 @@ const HomePage: React.FC = () => {
               <div className="flex justify-between space-x-4">
                 <StudyCard
                   title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  description={
+                    "Learn to date effectively with these top modules."
+                  }
+                  imageUrl={"module1.jpg"}
                 ></StudyCard>
                 <StudyCard
-                  title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  title={"Communication Skills"}
+                  description={"Enhance your communication skills."}
+                  imageUrl={"module2.jpg"}
                 ></StudyCard>
                 <StudyCard
-                  title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  title={"Body Language"}
+                  description={"Understand and use body language."}
+                  imageUrl={"module3.jpg"}
                 ></StudyCard>
               </div>
               <div className="mt-4 flex justify-between space-x-4">
                 <StudyCard
-                  title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  title={"Confidence Building"}
+                  description={"Boost your confidence."}
+                  imageUrl={"module4.jpg"}
                 ></StudyCard>
                 <StudyCard
-                  title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  title={"First Impressions"}
+                  description={"Make a great first impression."}
+                  imageUrl={"module5.jpg"}
                 ></StudyCard>
                 <StudyCard
-                  title={"Top 30 Modules"}
-                  description={"Learn to date"}
-                  imageUrl={""}
+                  title={"Advanced Techniques"}
+                  description={"Learn about lasting relationships."}
+                  imageUrl={"module6.jpg"}
                 ></StudyCard>
               </div>
             </div>
@@ -104,13 +106,11 @@ const HomePage: React.FC = () => {
             }
           ></Calender>
           <section className="mt-8">
-            <h1 className="mb-2 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-4xl font-extrabold text-transparent">
-              Stats
-            </h1>
+            <h1 className="mb-2 text-[1em] text-white">User Stats</h1>
             <div className=" text-left">
               {/* Stat 1 */}
               <div className=" ">
-                <span className="text-lg text-white">Stat 1</span>
+                <span className="text-[0.6em] text-white">Confidence</span>
                 <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
                     className="h-full bg-gradient-to-r from-blue-400 to-purple-600"
@@ -120,7 +120,7 @@ const HomePage: React.FC = () => {
               </div>
               {/* Stat 2 */}
               <div className="">
-                <span className="text-lg text-white">Stat 2</span>
+                <span className="text-[0.6em] text-white">Articulation</span>
                 <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
                     className="h-full bg-gradient-to-r from-green-400 to-teal-600"
@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
               </div>
               {/* Stat 3 */}
               <div className="">
-                <span className="text-lg text-white">Stat 3</span>
+                <span className="text-[0.6em] text-white">Efficency</span>
                 <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
                     className="h-full bg-gradient-to-r from-red-400 to-pink-600"
