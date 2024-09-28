@@ -23,7 +23,9 @@ const Row: React.FC<RowProps> = ({
 
   return (
     <Link to={itemLink || "/"} className="">
-      <div className={`flex ${rowClass} justify-start px-10 py-4 text-left `}>
+      <div
+        className={`flex ${rowClass} justify-start px-10 py-4 text-left transition-all hover:bg-black hover:bg-opacity-20 `}
+      >
         <div className="flex-0 px-4 text-white hover:text-blue-700">
           {index}
         </div>
