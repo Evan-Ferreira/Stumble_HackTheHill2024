@@ -41,29 +41,46 @@ const ModuleTest: React.FC = () => {
   };
 
   return (
-    <div className="w-full rounded bg-white p-4 shadow-md">
-      <div className="border-b border-gray-200">
-        <nav className="-mb-px flex">
+    <div className="mx-4 mt-4 w-full  rounded-lg border border-gray-500 bg-zinc-800  shadow-md">
+      <div className="rounded-t-lg bg-zinc-700 px-4">
+        <div className="flex items-center justify-start space-x-4 pt-2">
+          <svg
+            className="h-6 w-6 text-green-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <h2 className="text-[1em] font-semibold text-white"> Test Prompts</h2>
+        </div>
+        <nav className=" flex ">
           <button
-            className={`mr-1 ${value === 0 ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
+            className={`mr-1 ${value === 0 ? "border-green-500 text-green-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             onClick={() => handleChange(0)}
             {...a11yProps(0)}
           >
-            Tab 1
+            Test 1
           </button>
           <button
-            className={`mr-1 ${value === 1 ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
+            className={`mr-1 ${value === 1 ? "border-green-500 text-green-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             onClick={() => handleChange(1)}
             {...a11yProps(1)}
           >
-            Tab 2
+            Test 2
           </button>
           <button
-            className={`mr-1 ${value === 2 ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
+            className={`mr-1 ${value === 2 ? "border-green-500 text-green-600" : "border-transparent text-gray-500"} whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             onClick={() => handleChange(2)}
             {...a11yProps(2)}
           >
-            Tab 3
+            Test 3
           </button>
         </nav>
       </div>

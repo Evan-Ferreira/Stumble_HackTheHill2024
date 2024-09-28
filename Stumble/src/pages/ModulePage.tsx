@@ -19,21 +19,25 @@ const ModulePage: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col bg-[#1a1a1a] ">
       <ModuleMenu></ModuleMenu>
 
-      <div className="flex flex-grow ">
+      <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
-        <aside className="w-1/2 border-r ">
-          <ModuleDescription></ModuleDescription>
+        <aside className="h-full w-1/2  text-left ">
+          <ModuleDescription
+            description={"" || "Module Not Found"}
+          ></ModuleDescription>
         </aside>
 
         {/* Activity */}
-        <main className="h-full flex-grow bg-gray-50 p-6">
-          <div className="mt-4 flex space-x-4"></div>
+        <main className="h-full flex-grow ">
+          <div className=" flex h-1/2 ">
+            <ModuleActivity></ModuleActivity>
+          </div>
 
           {/* Test Cases */}
-          <div className="mt-4 flex space-x-4">
+          <div className=" flex h-1/2 ">
             <ModuleTest></ModuleTest>
           </div>
         </main>

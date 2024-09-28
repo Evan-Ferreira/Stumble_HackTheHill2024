@@ -61,9 +61,9 @@ const Menu: React.FC = () => {
             <Notifications count={5} />
             <div className="container mx-auto flex items-center justify-start">
               <img
-                src="https://via.placeholder.com/40"
+                src="pfp.jpg"
                 alt="Profile"
-                className="mr-4 h-10 w-10 rounded-full"
+                className="mr-4 h-10 w-10 rounded-full object-cover"
               />
             </div>
           </div>

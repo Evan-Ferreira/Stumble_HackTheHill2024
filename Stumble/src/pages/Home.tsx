@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
                 <StudyCard
                   title={"Confidence Building"}
                   description={"Boost your confidence."}
-                  imageUrl={"module4.jpg"}
+                  imageUrl={"module4.png"}
                 ></StudyCard>
                 <StudyCard
                   title={"First Impressions"}

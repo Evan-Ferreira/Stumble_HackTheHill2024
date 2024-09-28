@@ -113,9 +113,9 @@ const Notifications: React.FC<{ count: number }> = ({ count }) => {
 const Profile: React.FC = () => {
   return (
     <img
-      src="https://via.placeholder.com/40"
+      src="pfp.jpg"
       alt="Profile"
-      className="mr-4 h-10 w-10 rounded-full"
+      className="mr-4 h-10 w-10 rounded-full object-cover"
     />
   );
 };

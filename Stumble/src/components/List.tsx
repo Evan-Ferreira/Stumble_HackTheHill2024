@@ -12,21 +12,33 @@ interface Item {
 }
 
 const initialItems: Item[] = [
-  { id: 1, name: "Task 1", tag: "Work", difficulty: "Easy", status: "NC" },
+  { id: 1, name: "Say Hello!", tag: "Work", difficulty: "Easy", status: "NC" },
   {
     id: 2,
-    name: "Task 2",
+    name: "Give a compliment",
     tag: "Personal",
     difficulty: "Medium",
     status: "NC",
   },
-  { id: 3, name: "Task 3", tag: "Work", difficulty: "Hard", status: "NC" },
-  { id: 4, name: "Task 4", tag: "Study", difficulty: "Easy", status: "NC" },
+  {
+    id: 3,
+    name: "Ask a good question!",
+    tag: "Work",
+    difficulty: "Medium",
+    status: "NC",
+  },
+  {
+    id: 4,
+    name: "Texting 101",
+    tag: "Study",
+    difficulty: "Easy",
+    status: "NC",
+  },
   {
     id: 5,
-    name: "Task 5",
+    name: "Texting: Getting The Phone Number",
     tag: "Personal",
-    difficulty: "Medium",
+    difficulty: "Hard",
     status: "NC",
   },
   // Add more items as needed
@@ -121,6 +133,13 @@ const FilterableList: React.FC = () => {
 
       {/* Filtered List */}
       <div className="">
+        <div className="mb-2 flex justify-between gap-4 bg-zinc-800 px-4 py-2 text-[0.8em] text-gray-500">
+          <div>Index</div>
+          <div className="w-1/2">Name</div>
+          <div className="mr-32">Tag</div>
+          <div className="mr-20">Difficulty</div>
+          <div className="flex-end">Status</div>
+        </div>
         {filteredItems.map((item) => (
           <Row
             index={item.id}
