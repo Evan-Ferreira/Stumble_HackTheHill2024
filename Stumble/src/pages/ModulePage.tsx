@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Menu from "../components/Menu";
+import ModuleActivity from "@/components/ModuleComponents/ModuleActivity";
 
 const ModulePage: React.FC = () => {
   const [code, setCode] = useState<string>("");
@@ -35,20 +36,8 @@ const ModulePage: React.FC = () => {
 
         {/* Activity */}
         <main className="flex-grow bg-gray-50 p-6">
-          <div className="rounded bg-white p-6 shadow">
-            <header className="mb-4 bg-slate-400 text-left">
-              <h2 className="text-xl">Problem Title</h2>
-              <p>Problem description goes here...</p>
-            </header>
-            <div className="min-h-48"></div>
-            {/* <textarea
-              rows={10}
-              value={code}
-              onChange={handleCodeChange}
-              placeholder="Write your code here..."
-              className="mb-4 w-full rounded border bg-gray-100 p-4 font-mono"
-            /> */}
-          </div>
+          <ModuleActivity></ModuleActivity>
+
           <div className="mt-6">
             <h3 className="mb-2 text-lg">Test Cases</h3>
             <div className="flex space-x-4">
