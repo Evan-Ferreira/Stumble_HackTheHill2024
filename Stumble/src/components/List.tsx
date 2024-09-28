@@ -1,24 +1,41 @@
 import React, { useState } from "react";
+import Row from "./Row";
+import { Link } from "react-router-dom";
 
 interface Item {
   id: number;
   name: string;
   tag: string;
   difficulty: string;
+  status?: string;
+  link?: string;
 }
 
 const initialItems: Item[] = [
-  { id: 1, name: "Task 1", tag: "Work", difficulty: "Easy" },
-  { id: 2, name: "Task 2", tag: "Personal", difficulty: "Medium" },
-  { id: 3, name: "Task 3", tag: "Work", difficulty: "Hard" },
-  { id: 4, name: "Task 4", tag: "Study", difficulty: "Easy" },
-  { id: 5, name: "Task 5", tag: "Personal", difficulty: "Medium" },
+  { id: 1, name: "Task 1", tag: "Work", difficulty: "Easy", status: "NC" },
+  {
+    id: 2,
+    name: "Task 2",
+    tag: "Personal",
+    difficulty: "Medium",
+    status: "NC",
+  },
+  { id: 3, name: "Task 3", tag: "Work", difficulty: "Hard", status: "NC" },
+  { id: 4, name: "Task 4", tag: "Study", difficulty: "Easy", status: "NC" },
+  {
+    id: 5,
+    name: "Task 5",
+    tag: "Personal",
+    difficulty: "Medium",
+    status: "NC",
+  },
   // Add more items as needed
 ];
 
 const FilterableList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | undefined>(undefined);
+  const [selectedStatus, setStatus] = useState<string | undefined>(undefined);
   const [selectedDifficulty, setSelectedDifficulty] = useState<
     string | undefined
   >(undefined);
@@ -28,10 +45,15 @@ const FilterableList: React.FC = () => {
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesTag = selectedTag ? item.tag === selectedTag : true;
+    const matchesStatus = selectedStatus
+      ? item.status === selectedStatus
+      : true;
     const matchesDifficulty = selectedDifficulty
       ? item.difficulty === selectedDifficulty
       : true;
-    return matchesSearchTerm && matchesTag && matchesDifficulty;
+    return (
+      matchesSearchTerm && matchesTag && matchesDifficulty && matchesStatus
+    );
   });
 
   const handleRandomChoice = () => {
@@ -69,6 +91,16 @@ const FilterableList: React.FC = () => {
           <option value="Hard">Hard</option>
         </select>
 
+        <select
+          value={selectedStatus}
+          onChange={(e) => setStatus(e.target.value || undefined)}
+          className="h-full rounded-md bg-white bg-opacity-10 px-2 text-gray-400"
+        >
+          <option value="NC">Not Completed</option>
+          <option value="C">Completed</option>
+          <option value="IP">In Progress</option>
+        </select>
+
         <input
           type="text"
           placeholder="Search..."
@@ -88,14 +120,22 @@ const FilterableList: React.FC = () => {
       </div>
 
       {/* Filtered List */}
-      <ul className="list-disc pl-5">
+      <div className="">
         {filteredItems.map((item) => (
-          <li key={item.id} className="mb-2">
-            {item.name} - <span className="font-semibold">{item.tag}</span> |{" "}
-            <span className="font-semibold">{item.difficulty}</span>
-          </li>
+          <Row
+            index={item.id}
+            itemName={item.name}
+            itemTag={item.tag}
+            itemDifficulty={item.difficulty}
+            itemLink={item.link || "/module"}
+          ></Row>
+
+          //   <li key={item.id} className="mb-2">
+          //     {item.name} - <span className="font-semibold">{item.tag}</span> |{" "}
+          //     <span className="font-semibold">{item.difficulty}</span>
+          //   </li>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import FilterableList from "@/components/List";
 import Menu from "@/components/Menu";
 import StudyCard from "@/components/StudyPlan";
 import React from "react";
-import { Link } from "react-router-dom";
+import Calender from "react-calendar";
 
 const HomePage: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex min-h-screen px-[15%]">
-        <main className="container mx-auto my-8 w-4/5">
+        <main className="container mx-auto my-8 w-3/4">
           {/* Modules */}
           <div className="flex justify-between space-x-4">
             <InterestCard
@@ -41,7 +41,9 @@ const HomePage: React.FC = () => {
           {/* styling */}
           <div className="container mx-auto my-8 flex-grow text-left">
             <div>
-              <h1 className="mb-4 text-3xl font-bold">Study Plan</h1>
+              <h1 className="mb-4 text-[1.2em] font-bold text-white">
+                Study Plan
+              </h1>
               <div className="flex justify-between space-x-4">
                 <StudyCard
                   title={"Top 30 Modules"}
@@ -83,54 +85,67 @@ const HomePage: React.FC = () => {
           <section className="my-0 h-fit">
             <ListHeadingWithFilters></ListHeadingWithFilters>
             <FilterableList></FilterableList>
-            <h2 className="mb-4 text-2xl font-semibold">Featured Problems</h2>
-            <ul className="list-disc pl-5">
-              <li>
-                <Link
-                  to="/problems/1"
-                  className="text-blue-600 hover:underline"
-                >
-                  Two Sum
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/problems/2"
-                  className="text-blue-600 hover:underline"
-                >
-                  Add Two Numbers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/problems/3"
-                  className="text-blue-600 hover:underline"
-                >
-                  Longest Substring Without Repeating Characters
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/problems/4"
-                  className="text-blue-600 hover:underline"
-                >
-                  Median of Two Sorted Arrays
-                </Link>
-              </li>
-            </ul>
           </section>
         </main>
-        <div className="container mx-auto my-8 w-1/5">
-          <h1 className="mb-4 text-3xl font-bold">Side Bar</h1>
-          <p className="mb-2">
-            asdasdadasd Practice your coding skills with our curated problems.
-          </p>
+        <div className="container mx-auto my-4 w-1/4 p-4">
+          <Calender
+            className="rounded-lg bg-white bg-opacity-10 p-4 text-gray-300"
+            formatShortWeekday={(locale, date) =>
+              date.toLocaleDateString(locale, { weekday: "narrow" })
+            }
+            tileClassName={({ date, view }) =>
+              view === "month" &&
+              date.toDateString() === new Date().toDateString()
+                ? "bg-blue-500 rounded-full text-white"
+                : ""
+            }
+            tileContent={({ date, view }) =>
+              view === "month" ? <div className="h-1"></div> : null
+            }
+          ></Calender>
+          <section className="mt-8">
+            <h1 className="mb-2 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-4xl font-extrabold text-transparent">
+              Stats
+            </h1>
+            <div className=" text-left">
+              {/* Stat 1 */}
+              <div className=" ">
+                <span className="text-lg text-white">Stat 1</span>
+                <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
+                  <div
+                    className="h-full bg-gradient-to-r from-blue-400 to-purple-600"
+                    style={{ width: "40%" }} // Example percentage for the stat
+                  ></div>
+                </div>
+              </div>
+              {/* Stat 2 */}
+              <div className="">
+                <span className="text-lg text-white">Stat 2</span>
+                <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
+                  <div
+                    className="h-full bg-gradient-to-r from-green-400 to-teal-600"
+                    style={{ width: "70%" }} // Example percentage for the stat
+                  ></div>
+                </div>
+              </div>
+              {/* Stat 3 */}
+              <div className="">
+                <span className="text-lg text-white">Stat 3</span>
+                <div className="h-4 w-full overflow-hidden rounded-full bg-gray-700">
+                  <div
+                    className="h-full bg-gradient-to-r from-red-400 to-pink-600"
+                    style={{ width: "90%" }} // Example percentage for the stat
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
       {/* Footer */}
       <footer className="bg-gray-800 p-4 text-center text-white">
-        <p>© 2024 LeetCode Clone. All Rights Reserved.</p>
+        <p>© 2024 Stumble. All Rights Reserved.</p>
       </footer>
     </div>
   );

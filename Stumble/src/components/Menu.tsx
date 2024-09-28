@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 
 const Menu: React.FC = () => {
   return (
-    <header className="bg-blue-600 p-4 text-white">
+    <header className="bg-[#302c2c] p-4 text-white">
       <div className="container mx-auto flex items-center justify-between px-[15%]">
         <div className="container mx-auto flex items-center justify-start">
           <Link to="/" className="text-2xl font-bold">
-            LeetCode Clone
+            <img
+              src="stumble.png"
+              alt="Stumble"
+              className="mr-4 h-10 w-10 rounded-full"
+            />
           </Link>
           <nav>
             <Link to="/problems" className="mx-4 hover:underline">
