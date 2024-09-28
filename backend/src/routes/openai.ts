@@ -1,9 +1,11 @@
 import express from 'express';
 import createWoman from '../controllers/openai/createWoman';
 import createThread from '../controllers/openai/createThread';
-import getGrades from '../controllers/openai/getGrades';
 import getWomanResponse from '../controllers/openai/getWomanResponse';
 import addResponse from '../controllers/openai/addResponse';
+import textToSpeech from '../controllers/textToSpeech';
+import path from 'path';
+
 const router = express.Router();
 
 const botEngineerPrompts = {
@@ -67,29 +69,47 @@ router.post('/q2', async (req, res) => {
     try {
         const output = await getWomanResponse(assistantID, threadID, message);
         await addResponse(output, threadID, 'assistant');
-        console.log(output);
-        res.json(output);
+        const filePath = await textToSpeech(output, 'Rachel');
+        res.sendFile(filePath, (err) => {
+            if (err) {
+                console.error('Error sending the file:', err);
+                res.status(500).send(
+                    'Error occurred while sending the MP3 file.'
+                );
+            }
+        });
     } catch (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
     }
 });
 
-router.post('/q3', async (req, res) => {
-    let { assistantID, threadID, message } = req.body;
-    if (!assistantID && !threadID) {
-        assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
-        threadID = await createThread();
-    }
-    try {
-        const output = await getWomanResponse(assistantID, threadID, message);
-        await addResponse(output, threadID, 'assistant');
-        console.log(output);
-        res.json(output);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    }
+router.get('/q3', async (req, res) => {
+    const filePath = await textToSpeech(
+        'Hello, my name is Sarah. Joseph can you ple--ase make me a sexy React frontend leetcode god. ---------Daddy.',
+        'Rachel'
+    );
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error('Error sending the file:', err);
+            res.status(500).send('Error occurred while sending the MP3 file.');
+        }
+    });
+
+    // let { assistantID, threadID, message } = req.body;
+    // if (!assistantID && !threadID) {
+    //     assistantID = await createWoman('Sarah', botEngineerPrompts.q1);
+    //     threadID = await createThread();
+    // }
+    // try {
+    //     const output = await getWomanResponse(assistantID, threadID, message);
+    //     await addResponse(output, threadID, 'assistant');
+    //     console.log(output);
+    //     res.json(output);
+    // } catch (err) {
+    //     console.log(err);
+    //     res.status(500).send('Internal Server Error');
+    // }
 });
 
 router.post('/q4', async (req, res) => {
