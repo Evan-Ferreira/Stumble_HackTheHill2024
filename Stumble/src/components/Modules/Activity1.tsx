@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useVoiceToText } from "react-speakup";
 
-const Activity1: React.FC = ({setResponses}) => {
+const Activity1: React.FC = ({ setResponses }) => {
   const { startListening, stopListening, transcript, reset } = useVoiceToText({
     continuous: true,
     lang: "en-US",
   });
-
+  const [conversation, setConversation] = useState([]);
   const [recording, setRecording] = useState(false);
-  const [audioURL, setAudioURL] = useState<string | null>(null);
   const [transcription, setTranscription] = useState<string | null>(null);
 
   const startRecording = () => {
@@ -30,24 +29,27 @@ const Activity1: React.FC = ({setResponses}) => {
         </h1>
 
         <div className="flex justify-center">
-          <button
-            onClick={recording ? stopRecording : startRecording}
-            className={`transform transition duration-300 ease-in-out hover:scale-105 ${
-              recording
-                ? "bg-red-600 hover:bg-red-700"
-                : "bg-green-500 hover:bg-green-600"
-            } w-full max-w-xs rounded-full px-6 py-3 text-lg font-medium text-white focus:outline-none`}
-          >
-            {recording ? (
-              <>
-                <span className="mr-2">🛑</span> Stop Recording
-              </>
-            ) : (
-              <>
-                <span className="mr-2">🎤</span> Start Recording
-              </>
-            )}
-          </button>
+          {conversation && (
+            <button
+              onClick={recording ? stopRecording : startRecording}
+              className={`transform transition duration-300 ease-in-out hover:scale-105 ${
+                recording
+                  ? "bg-red-600 hover:bg-red-700"
+                  : "bg-green-500 hover:bg-green-600"
+              } w-full max-w-xs rounded-full px-6 py-3 text-lg font-medium text-white focus:outline-none`}
+            >
+              {recording ? (
+                <>
+                  <span className="mr-2">🛑</span> Stop Recording
+                </>
+              ) : (
+                <>
+                  <span className="mr-2">🎤</span> Start Recording
+                </>
+              )}
+            </button>
+          )}
+          ;
         </div>
 
         {transcription && (
