@@ -9,10 +9,10 @@ const TestDisplay: React.FC<TestDisplayProps> = ({ score, description }) => {
   if (score === null) {
     return <div>{description}</div>;
   } else if (score > 65) {
-    return <div>Congratulations! You have passed the test.</div>;
+    return <div className="text-green-400">Congratulations! You have passed the test.</div>;
   } else {
     return (
-      <div>Unfortunately, you did not pass the test. Please try again.</div>
+      <div className="text-red-400">Unfortunately, you did not pass the test. Please try again.</div>
     );
   }
 };

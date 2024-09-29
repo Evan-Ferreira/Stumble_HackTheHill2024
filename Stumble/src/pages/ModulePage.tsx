@@ -9,7 +9,8 @@ interface ModulePageProps {
   index: number;
 }
 const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
-  let content = moduleDescriptions[index - 1];
+  const content = moduleDescriptions[index - 1];
+  const [responses, setResponses] = useState([]);
   return (
     <div className="flex h-screen flex-col bg-[#1a1a1a] ">
       <div className="h-[7%] w-screen"></div>
@@ -29,12 +30,12 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
         {/* Activity */}
         <main className="h-full flex-grow ">
           <div className=" flex h-1/2 ">
-            <ModuleActivity index={index}></ModuleActivity>
+            <ModuleActivity index={index} setResponses={setResponses}></ModuleActivity>
           </div>
 
           {/* Test Cases */}
           <div className=" flex h-1/2 ">
-            <ModuleTest></ModuleTest>
+            <ModuleTest responses={responses}></ModuleTest>
           </div>
         </main>
       </div>

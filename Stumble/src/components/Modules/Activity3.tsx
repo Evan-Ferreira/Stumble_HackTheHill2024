@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Activity3() {
+function Activity3({setResponses}) {
   const [conversation, setConversation] = useState([]);
   const [mesg, setMesg] = useState("");
 
@@ -28,7 +28,7 @@ function Activity3() {
 
       <div className="flex space-x-2 p-2">
         <input
-          className="flex-1 rounded-md bg-slate-500 p-2 text-black"
+          className="flex-1 rounded-md bg-slate-500 p-2 text-white"
           onChange={(evt) => setMesg(evt.target.value)}
           onKeyUp={(evt) => {
             if (evt.key === "Enter") {

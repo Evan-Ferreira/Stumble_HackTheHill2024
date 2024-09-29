@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
-const Activity1: React.FC = () => {
+const Activity1: React.FC = ({setResponses}) => {
   const [recording, setRecording] = useState<boolean>(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
   const [transcription, setTranscription] = useState<string>("");

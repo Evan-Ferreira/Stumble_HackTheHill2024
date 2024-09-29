@@ -85,15 +85,15 @@ const ModuleTest: React.FC = () => {
           </button>
         </nav>
       </div>
-      <TabPanel value={value} index={0}>
-        <TestDisplay score={null}></TestDisplay>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TestDisplay score={null}></TestDisplay>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <TestDisplay score={null}></TestDisplay>
-      </TabPanel>
+        <TabPanel value={value} index={0}>
+          <TestDisplay score={null}></TestDisplay>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <TestDisplay score={null}></TestDisplay>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <TestDisplay score={null}></TestDisplay>
+        </TabPanel>
     </div>
   );
 };
