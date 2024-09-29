@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useVoiceToText } from "react-speakup";
+import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 interface Activity1Props {
   setResponses?: (response: string) => void;
@@ -35,6 +36,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
 
   return (
     <div className="max-h-[16.5rem] items-center justify-center overflow-y-clip p-5">
+      <ModuleMenu/>
       <div className="w-full max-w-md rounded-lg bg-zinc-700 p-4 shadow-lg">
         <h1 className="mb-2 text-center text-[1em] font-semibold text-white">
           Record Your Response

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useVoiceToText } from "react-speakup";
+import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 const Activity2: React.FC = () => {
   const [response1, setResponse1] = useState("");
@@ -31,6 +32,7 @@ const Activity2: React.FC = () => {
 
   return (
     <div className="p-4">
+      <ModuleMenu/>
       {/* Recording 1 Section */}
       <div className="mb-2 flex justify-between">
         <span>{response1}</span>
