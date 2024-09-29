@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Row from "./Row";
-import { Link } from "react-router-dom";
 
 interface Item {
   id: number;
@@ -12,32 +11,38 @@ interface Item {
 }
 
 const initialItems: Item[] = [
-  { id: 1, name: "Say Hello!", tag: "Work", difficulty: "Easy", status: "NC" },
+  {
+    id: 1,
+    name: "Say Hello!",
+    tag: "First Impressions",
+    difficulty: "Easy",
+    status: "NC",
+  },
   {
     id: 2,
     name: "Give a compliment",
-    tag: "Personal",
+    tag: "Communication",
     difficulty: "Medium",
     status: "NC",
   },
   {
     id: 3,
-    name: "Ask a good question!",
-    tag: "Work",
+    name: "Texting: Set Up A Date!",
+    tag: "Communication",
     difficulty: "Medium",
     status: "NC",
   },
   {
     id: 4,
     name: "Texting 101",
-    tag: "Study",
+    tag: "Non-Verbal",
     difficulty: "Easy",
     status: "NC",
   },
   {
     id: 5,
     name: "Texting: Getting The Phone Number",
-    tag: "Personal",
+    tag: "Non-Verbal",
     difficulty: "Hard",
     status: "NC",
   },
@@ -88,9 +93,9 @@ const FilterableList: React.FC = () => {
           className="rounded-md bg-white bg-opacity-10  px-2 text-gray-400"
         >
           <option value="">Select Tag</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Study">Study</option>
+          <option value="Non-Verbal">Non-Verbal</option>
+          <option value="Communication">Communication</option>
+          <option value="First Impressions">First Impressions</option>
         </select>
 
         <select
@@ -134,10 +139,10 @@ const FilterableList: React.FC = () => {
 
       {/* Filtered List */}
       <div className="">
-        <div className="mb-2 flex justify-between gap-4 bg-zinc-800 px-4 py-2 text-[0.8em] text-gray-500">
+        <div className="mb-2 flex justify-between gap-4 bg-zinc-800 px-4 py-2 pr-8 text-[0.8em] text-gray-500">
           <div>Index</div>
           <div className="w-1/2">Name</div>
-          <div className="mr-32">Tag</div>
+          <div className="mr-28">Tag</div>
           <div className="mr-20">Difficulty</div>
           <div className="flex-end">Status</div>
         </div>

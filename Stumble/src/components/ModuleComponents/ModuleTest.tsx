@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import TestDisplay from "./TestDisplay";
+import { moduleDescriptions } from "../Modules/ModuleDescript";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+}
+interface ModuleProps {
+  gindex: number;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -34,7 +38,7 @@ function a11yProps(index: number) {
   };
 }
 
-const ModuleTest: React.FC = ({responses}) => {
+const ModuleTest: React.FC<ModuleProps> = ({ gindex, responses }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (index: number) => {
@@ -42,7 +46,7 @@ const ModuleTest: React.FC = ({responses}) => {
   };
 
   return (
-    <div className="mx-4 mt-4 w-full rounded-lg border border-gray-500 bg-zinc-800 shadow-md">
+    <div className="mx-4 mt-4 w-full max-w-[50vw]  rounded-lg border border-gray-500 bg-zinc-800  shadow-md">
       <div className="rounded-t-lg bg-zinc-700 px-4">
         <div className="flex items-center justify-start space-x-4 pt-2">
           <svg
@@ -85,15 +89,33 @@ const ModuleTest: React.FC = ({responses}) => {
           </button>
         </nav>
       </div>
-        <TabPanel value={value} index={0}>
-          <TestDisplay score={responses.length ? responses[0].score : ""} feedback={responses.length ? responses[0].feedback : ""}></TestDisplay>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <TestDisplay score={responses.length ? responses[1].score : ""} feedback={responses.length ? responses[1].feedback : ""}></TestDisplay>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <TestDisplay score={responses.length ? responses[2].score : ""} feedback={responses.length ? responses[2].feedback : ""}></TestDisplay>
-        </TabPanel>
+      <TabPanel value={value} index={0}>
+        <TestDisplay
+          description={moduleDescriptions[gindex - 1].description}
+          title={moduleDescriptions[gindex - 1].title}
+          score={responses.length ? responses[0].score : ""}
+          testnum={1}
+          feedback={responses.length ? responses[0].feedback : ""}
+        ></TestDisplay>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <TestDisplay
+          description={moduleDescriptions[gindex - 1].description}
+          title={moduleDescriptions[gindex - 1].title}
+          score={responses.length ? responses[1].score : ""}
+          testnum={2}
+          feedback={responses.length ? responses[1].feedback : ""}
+        ></TestDisplay>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <TestDisplay
+          description={moduleDescriptions[gindex - 1].description}
+          title={moduleDescriptions[gindex - 1].title}
+          score={responses.length ? responses[2].score : ""}
+          testnum={3}
+          feedback={responses.length ? responses[2].feedback : ""}
+        ></TestDisplay>
+      </TabPanel>
     </div>
   );
 };

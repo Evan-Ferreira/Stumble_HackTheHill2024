@@ -29,7 +29,7 @@ const Row: React.FC<RowProps> = ({
         <div className="flex-0 px-4 text-white hover:text-blue-700">
           {index}
         </div>
-        <div className="flex-0 w-1/2 px-8 text-white hover:text-blue-700">
+        <div className="flex-0 w-1/2 px-8  text-white hover:text-blue-700">
           {itemName}
         </div>
         <div className="flex-1 text-white ">{itemTag}</div>
@@ -56,7 +56,13 @@ const Row: React.FC<RowProps> = ({
               ⏳
             </span>
           ) : (
-            <span role="img" aria-label="not completed"></span>
+            <span
+              role="img"
+              aria-label="not completed"
+              className="font-bold text-white"
+            >
+              --
+            </span>
           )}
         </div>
       </div>

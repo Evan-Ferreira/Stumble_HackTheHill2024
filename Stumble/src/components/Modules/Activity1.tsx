@@ -1,114 +1,73 @@
-import React, { useState, useRef } from "react";
-import ModuleMenu from "../ModuleComponents/ModuleMenu";
-import axios from "axios";
+import React, { useState } from "react";
+import { useVoiceToText } from "react-speakup";
 
 const Activity1: React.FC = ({setResponses}) => {
-  const [recording, setRecording] = useState<boolean>(false);
+  const { startListening, stopListening, transcript, reset } = useVoiceToText({
+    continuous: true,
+    lang: "en-US",
+  });
+
+  const [recording, setRecording] = useState(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
-  const [transcription, setTranscription] = useState<string>("");
+  const [transcription, setTranscription] = useState<string | null>(null);
 
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
-  const speechRecognitionRef = useRef<SpeechRecognition | null>(null);
-
-  const startRecording = async () => {
-    try {
-      // Start recording audio
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorderRef.current = new MediaRecorder(stream);
-
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-
-      mediaRecorderRef.current.onstop = () => {
-        const audioBlob = new Blob(audioChunksRef.current, {
-          type: "audio/wav",
-        });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        setAudioURL(audioUrl);
-        audioChunksRef.current = [];
-      };
-
-      // Start speech recognition
-      const SpeechRecognition =
-        (window as any).SpeechRecognition ||
-        (window as any).webkitSpeechRecognition;
-
-      if (SpeechRecognition) {
-        speechRecognitionRef.current = new SpeechRecognition();
-        if (speechRecognitionRef.current) {
-          speechRecognitionRef.current.interimResults = false;
-          speechRecognitionRef.current.lang = "en-US";
-
-          speechRecognitionRef.current.onresult = (
-            event: SpeechRecognitionEvent,
-          ) => {
-            const result = event.results[0][0].transcript;
-            setTranscription(result);
-          };
-
-          speechRecognitionRef.current.onerror = (event) => {
-            console.error("Speech recognition error:", event.error);
-          };
-
-          speechRecognitionRef.current.start();
-        }
-      } else {
-        console.error("Web Speech API is not supported in this browser.");
-      }
-
-      // Start recording
-      mediaRecorderRef.current.start();
-      setRecording(true);
-    } catch (error) {
-      console.error("Error accessing microphone:", error);
-    }
+  const startRecording = () => {
+    startListening();
+    setRecording(true);
   };
 
   const stopRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-      setRecording(false);
-    }
-
-    if (speechRecognitionRef.current) {
-      speechRecognitionRef.current.stop();
-    }
+    stopListening();
+    setRecording(false);
+    setTranscription(transcript);
   };
 
   return (
-    <div className="rounded-lg bg-zinc-800 p-5 text-white">
-      <ModuleMenu></ModuleMenu>
-      <h1 className="mb-4 text-center text-xl">
-        Record a Response Then Submit
-      </h1>
-      <button
-        onClick={recording ? stopRecording : startRecording}
-        className={`${
-          recording ? "bg-red-500" : "bg-green-500"
-        } mx-auto my-2 flex items-center justify-center rounded border-none px-4 py-2 text-white`}
-      >
-        {recording ? (
-          <>
-            <span className="mr-2">🛑</span> Stop Recording
-          </>
-        ) : (
-          <>
-            <span className="mr-2">🎤</span> Start Recording
-          </>
-        )}
-      </button>
-      {audioURL && (
-        <div className="mt-5 text-center">
-          <audio src={audioURL} controls className="w-full" />
+    <div className="flex  items-center justify-center p-5">
+      <div className="w-full max-w-md rounded-lg bg-zinc-700 p-8 shadow-lg">
+        <h1 className="mb-6 text-center text-2xl font-semibold text-white">
+          Record Your Response
+        </h1>
+
+        <div className="flex justify-center">
+          <button
+            onClick={recording ? stopRecording : startRecording}
+            className={`transform transition duration-300 ease-in-out hover:scale-105 ${
+              recording
+                ? "bg-red-600 hover:bg-red-700"
+                : "bg-green-500 hover:bg-green-600"
+            } w-full max-w-xs rounded-full px-6 py-3 text-lg font-medium text-white focus:outline-none`}
+          >
+            {recording ? (
+              <>
+                <span className="mr-2">🛑</span> Stop Recording
+              </>
+            ) : (
+              <>
+                <span className="mr-2">🎤</span> Start Recording
+              </>
+            )}
+          </button>
         </div>
-      )}
-      {transcription && (
-        <p className="mt-5 text-center">
-          <strong>Transcription:</strong> {transcription}
-        </p>
-      )}
+
+        {transcription && (
+          <div className="mt-8 rounded-lg bg-gray-700 p-4 text-white shadow-inner">
+            <h2 className="mb-3 text-lg font-semibold">Transcription:</h2>
+            <p className="text-gray-300">{transcription}</p>
+          </div>
+        )}
+
+        {transcription && (
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={reset}
+              className="rounded-full bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition duration-300 ease-in-out hover:bg-indigo-600 focus:outline-none"
+            >
+              Reset Transcription
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
