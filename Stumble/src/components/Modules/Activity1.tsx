@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 const Activity1: React.FC = () => {
   const [recording, setRecording] = useState<boolean>(false);
@@ -77,6 +78,7 @@ const Activity1: React.FC = () => {
 
   return (
     <div>
+      <ModuleMenu></ModuleMenu>
       <h1>Audio Recorder with Frontend Transcription</h1>
       <button onClick={recording ? stopRecording : startRecording}>
         {recording ? "Stop Recording" : "Start Recording"}
