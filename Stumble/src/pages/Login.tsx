@@ -1,6 +1,6 @@
 import React from "react";
 
-const FakeLogin: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-[#1a1a1a]">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
@@ -71,4 +71,4 @@ const FakeLogin: React.FC = () => {
   );
 };
 
-export default FakeLogin;
+export default Login;
