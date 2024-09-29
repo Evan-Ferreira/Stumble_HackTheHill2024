@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useVoiceToText } from "react-speakup";
+import axios from "axios";
 import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 interface Activity1Props {
@@ -12,12 +13,14 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
     lang: "en-US",
   });
 
+  const [conversation, setConversation] = useState([]);
   const [recording, setRecording] = useState(false);
   const [transcription, setTranscription] = useState<string | null>(null);
 
   const startRecording = () => {
     startListening();
     setRecording(true);
+    setTranscription("");
   };
 
   const stopRecording = () => {
@@ -26,13 +29,46 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
   };
 
   useEffect(() => {
-    if (transcript) {
-      setTranscription(transcript);
-      if (setResponses) {
-        setResponses(transcript); // If setResponses is provided, send the transcript
-      }
+    setTranscription(transcript);
+    if (transcript !== "") {
+      setConversation([transcript]);
     }
-  }, [transcript, setResponses]);
+  }, [transcript]);
+  useEffect(() => {
+    if (conversation.length !== 0) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/questions/q1",
+            {
+              assistantID: null,
+              threadID: null,
+              message: conversation[conversation.length - 1],
+            },
+            { responseType: "blob" },
+          );
+          console.log("received");
+          const blob = response.data;
+          const audioUrl = URL.createObjectURL(blob);
+          const newAudio = new Audio(audioUrl);
+          newAudio.play();
+          const response1 = await axios.get("http://localhost:3000/mongo/1");
+          console.log("mongoman");
+          const newList = conversation.concat(response1.data.message);
+          const response2 = await axios.post("http://localhost:3000/answer", {
+            question: 1,
+            input: newList,
+          });
+          if (setResponses) {
+            setResponses(response2.data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }
+  }, [conversation]);
 
   return (
     <div className="max-h-[16.5rem] items-center justify-center overflow-y-clip p-5">
