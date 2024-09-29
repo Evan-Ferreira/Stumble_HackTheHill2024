@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ModuleActivity from "@/components/ModuleComponents/ModuleActivity";
 import ModuleTest from "@/components/ModuleComponents/ModuleTest";
 import ModuleMenu from "@/components/ModuleComponents/ModuleMenu";
