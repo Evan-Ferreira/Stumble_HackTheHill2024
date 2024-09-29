@@ -9,6 +9,7 @@ interface TabPanelProps {
 }
 interface ModuleProps {
   gindex: number;
+  responses: any[];
 }
 
 function TabPanel(props: TabPanelProps) {

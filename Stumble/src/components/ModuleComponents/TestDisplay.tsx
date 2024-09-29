@@ -38,6 +38,7 @@ const TestDisplay: React.FC<TestDisplayProps> = ({
         </div>
       ) : score > 65 ? (
         <>
+          <div className="text-xl font-bold">Your Score: {score}%</div>
           <div className="text-xl font-bold text-green-400">
             Congratulations! You have passed the test.
           </div>
@@ -45,6 +46,7 @@ const TestDisplay: React.FC<TestDisplayProps> = ({
         </>
       ) : (
         <>
+          <div className="text-xl font-bold">Your Score: {score}%</div>
           <div className="text-xl font-bold">
             Unfortunately, you did not pass the test. Please try again.
           </div>

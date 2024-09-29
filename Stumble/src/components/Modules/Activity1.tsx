@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useVoiceToText } from "react-speakup";
+import axios from "axios";
 
 interface Activity1Props {
   setResponses?: (response: string) => void;
@@ -10,6 +11,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
     continuous: true,
     lang: "en-US",
   });
+
   const [conversation, setConversation] = useState([]);
   const [recording, setRecording] = useState(false);
   const [transcription, setTranscription] = useState<string | null>(null);
@@ -17,6 +19,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
   const startRecording = () => {
     startListening();
     setRecording(true);
+    setTranscription("");
   };
 
   const stopRecording = () => {
@@ -25,13 +28,46 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
   };
 
   useEffect(() => {
-    if (transcript) {
-      setTranscription(transcript);
-      if (setResponses) {
-        setResponses(transcript); // If setResponses is provided, send the transcript
-      }
+    setTranscription(transcript);
+    if (transcript !== "") {
+      setConversation([transcript]);
     }
-  }, [transcript, setResponses]);
+  }, [transcript]);
+  useEffect(() => {
+    if (conversation.length !== 0) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/questions/q1",
+            {
+              assistantID: null,
+              threadID: null,
+              message: conversation[conversation.length - 1],
+            },
+            { responseType: "blob" },
+          );
+          console.log("received");
+          const blob = response.data;
+          const audioUrl = URL.createObjectURL(blob);
+          const newAudio = new Audio(audioUrl);
+          newAudio.play();
+          const response1 = await axios.get("http://localhost:3000/mongo/1");
+          console.log("mongoman");
+          const newList = conversation.concat(response1.data.message);
+          const response2 = await axios.post("http://localhost:3000/answer", {
+            question: 1,
+            input: newList,
+          });
+          if (setResponses) {
+            setResponses(response2.data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }
+  }, [conversation]);
 
   return (
     <div className="max-h-[16.5rem] items-center justify-center overflow-y-clip p-5">
@@ -43,7 +79,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
         <div className="flex justify-center">
           <button
             onClick={recording ? stopRecording : startRecording}
-            className={`transform transition duration-300 ease-in-out hover:scale-105 ${
+            className={`m-2 transform transition duration-300 ease-in-out hover:scale-105 ${
               recording
                 ? "bg-red-600 hover:bg-red-700"
                 : "bg-green-500 hover:bg-green-600"
@@ -59,6 +95,21 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
               </>
             )}
           </button>
+          {transcription != "" && (
+            <div className=" m-2 flex justify-center">
+              <button
+                onClick={() => {
+                  reset();
+                  if (setTranscription) {
+                    setTranscription(""); // Reset the response as well
+                  }
+                }}
+                className="rounded-full bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition duration-300 ease-in-out hover:bg-indigo-600 focus:outline-none"
+              >
+                Reset Transcription
+              </button>
+            </div>
+          )}
         </div>
 
         {transcription && (
