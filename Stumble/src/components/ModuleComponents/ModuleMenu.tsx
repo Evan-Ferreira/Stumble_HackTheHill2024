@@ -123,7 +123,7 @@ const Profile: React.FC = () => {
 // ModuleMenu Component
 const ModuleMenu: React.FC = () => {
   return (
-    <header className="bg-[#302c2c] p-2 text-white">
+    <header className="bg-[#302c2c] p-2 text-white top-0 left-0 absolute w-screen">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center justify-start">
           <Logo />
