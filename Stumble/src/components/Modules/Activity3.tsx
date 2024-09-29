@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Activity3({setResponses}) {
   const [conversation, setConversation] = useState([]);
   const [mesg, setMesg] = useState("");
+  const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    if (conversation.length % 2 !== 0){
+      axios.post("http://localhost:3000/questions/q3", {
+        assistantID: null,
+        threadID: null,
+        message: conversation[conversation.length - 1]
+      }).then((res) => {
+        setConversation([...conversation, res.data.message]);
+        setLoading(false);
+      })
+    }
+  }, [conversation])
 
   const sendMesg = (mesg: string) => {
     if (mesg.trim() === "") return; // Prevent sending empty messages
     setConversation([...conversation, mesg]);
+    setLoading(true);
     setMesg("");
   };
 
@@ -28,7 +43,7 @@ function Activity3({setResponses}) {
 
       <div className="flex space-x-2 p-2">
         <input
-          className="flex-1 rounded-md bg-slate-500 p-2 text-white"
+          className={`flex-1 rounded-md bg-slate-500 p-2 text-white ${loading ? "opacity-30" : ""}`}
           onChange={(evt) => setMesg(evt.target.value)}
           onKeyUp={(evt) => {
             if (evt.key === "Enter") {
@@ -37,11 +52,13 @@ function Activity3({setResponses}) {
           }}
           value={mesg}
           placeholder="Type your message..."
+          {...(loading ? {disabled: true} : {})}
         />
 
         <button
-          className="rounded-md bg-blue-600 px-4 py-2 text-white transition duration-300 hover:bg-blue-700"
+          className={`rounded-md bg-blue-600 px-4 py-2 text-white transition duration-300 ${loading ? "opacity-50" : "hover:bg-blue-700"}`}
           onClick={() => sendMesg(mesg)}
+          {...(loading ? {disabled: true} : {})}
         >
           Send
         </button>
