@@ -147,3 +147,4 @@ build/
 .flaskenv*
 !.env.project
 !.env.vault
+audio/
