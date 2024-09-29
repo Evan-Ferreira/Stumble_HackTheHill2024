@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 function Activity3() {
   const [conversation, setConversation] = useState([
@@ -15,6 +16,7 @@ function Activity3() {
 
   return (
     <div className="flex h-[18rem] w-full flex-col bg-zinc-800 text-white">
+      <ModuleMenu></ModuleMenu>
       <div className="h-full flex-1 overflow-y-scroll rounded-lg bg-zinc-700 p-4 shadow-md">
         {conversation.map((text, i) => {
           const isYou = i % 2 === 0;
