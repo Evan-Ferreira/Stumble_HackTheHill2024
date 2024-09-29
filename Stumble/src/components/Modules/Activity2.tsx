@@ -20,7 +20,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
 
   const startRecording = () => {
     startListening();
-    setRecording(true);
+    setRecording(true)
     setTranscription("");
   };
 
@@ -78,7 +78,7 @@ const Activity1: React.FC<Activity1Props> = ({ setResponses }) => {
 
   return (
     <div className="max-h-[16.5rem] items-center justify-center overflow-y-clip p-5">
-      <ModuleMenu/>
+      <ModuleMenu submit={handleSubmit}/>
       <div className="w-full max-w-md rounded-lg bg-zinc-700 p-4 shadow-lg">
         {loading ? ( // Conditional rendering based on loading state
           <div className="flex h-32 items-center justify-center">
