@@ -78,7 +78,6 @@ const Activity1: React.FC = () => {
 
   return (
     <div className="rounded-lg bg-zinc-800 p-5 text-white">
-      <ModuleMenu></ModuleMenu>
       <h1 className="mb-4 text-center text-xl">
         Record a Response Then Submit
       </h1>

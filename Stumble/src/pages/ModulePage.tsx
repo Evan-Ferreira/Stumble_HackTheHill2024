@@ -12,7 +12,7 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
   let content = moduleDescriptions[index - 1];
   return (
     <div className="flex h-screen flex-col bg-[#1a1a1a] ">
-      <div className="h-[7%] w-screen"></div>
+      <ModuleMenu></ModuleMenu>
 
       <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
