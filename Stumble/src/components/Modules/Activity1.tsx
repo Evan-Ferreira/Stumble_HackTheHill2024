@@ -76,13 +76,36 @@ const Activity1: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Audio Recorder with Frontend Transcription</h1>
-      <button onClick={recording ? stopRecording : startRecording}>
-        {recording ? "Stop Recording" : "Start Recording"}
+    <div className="rounded-lg bg-zinc-800 p-5 text-white">
+      <h1 className="mb-4 text-center text-xl">
+        Record a Response Then Submit
+      </h1>
+      <button
+        onClick={recording ? stopRecording : startRecording}
+        className={`${
+          recording ? "bg-red-500" : "bg-green-500"
+        } mx-auto my-2 flex items-center justify-center rounded border-none px-4 py-2 text-white`}
+      >
+        {recording ? (
+          <>
+            <span className="mr-2">🛑</span> Stop Recording
+          </>
+        ) : (
+          <>
+            <span className="mr-2">🎤</span> Start Recording
+          </>
+        )}
       </button>
-      {audioURL && <audio src={audioURL} controls />}
-      {transcription && <p>Transcription: {transcription}</p>}
+      {audioURL && (
+        <div className="mt-5 text-center">
+          <audio src={audioURL} controls className="w-full" />
+        </div>
+      )}
+      {transcription && (
+        <p className="mt-5 text-center">
+          <strong>Transcription:</strong> {transcription}
+        </p>
+      )}
     </div>
   );
 };
