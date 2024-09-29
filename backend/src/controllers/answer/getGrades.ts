@@ -8,13 +8,13 @@ const openai = new OpenAI();
 const getGrades = async (goalNumber: number, convo: string) => {
   let goal = "to flirt";
   if (goalNumber === 1) {
-    goal = "for me to say hello to the AI";
+    goal = "for me to say hello to the woman";
   } else if (goalNumber === 2) {
-    goal = "to introduce myself in a kind, friendly, and open manner";
+    goal = "to give a good compliment";
   } else if (goalNumber === 3) {
-    goal = "to get the number of the woman AI";
+    goal = "successfully setup a date with the woman";
   } else if (goalNumber === 4) {
-    goal = "to successfully setup a date with the AI";
+    goal = "to successfully setup a date with the woman";
   }
   try {
     const completion = await openai.chat.completions.create({
