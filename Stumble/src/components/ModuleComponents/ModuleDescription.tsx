@@ -28,7 +28,13 @@ export default function ModuleDescription({
 
       <div className="h-auto rounded-b-lg p-8 text-white">
         <h1 className="mb-6 text-2xl">{title}</h1>
-        {img && <img src={img} alt="No Image" className="mb-6" />}
+        {img && (
+          <img
+            src={img}
+            alt="No Image"
+            className="mb-6 h-48 w-48 rounded-full"
+          />
+        )}
         {audiopath && <AudioPlayer audioPath={audiopath} />}
 
         <p className="m-6">{description}</p>
