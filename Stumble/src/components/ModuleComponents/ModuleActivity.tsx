@@ -7,7 +7,10 @@ interface ModuleActivityProps {
   index: number;
 }
 
-const ModuleActivity: React.FC<ModuleActivityProps> = ({ index, setResponses }) => {
+const ModuleActivity: React.FC<ModuleActivityProps> = ({
+  index,
+  setResponses,
+}) => {
   return (
     <div className="mx-4 w-full max-w-[50vw] rounded-lg border border-gray-500 bg-zinc-800  shadow-md">
       <div className="">
@@ -31,10 +34,10 @@ const ModuleActivity: React.FC<ModuleActivityProps> = ({ index, setResponses }) 
           </li>
         </ul>
       </div>
-      <div className="mb-4 h-full border-b pb-2">
-        {index === 1 && <Activity1 setResponses={setResponses}/>}
-        {index === 2 && <Activity2 setResponses={setResponses}/>}
-        {index === 3 && <Activity3 setResponses={setResponses}/>}
+      <div className="mb-4  h-full max-h-[50vh] border-b pb-2">
+        {index === 1 && <Activity1 setResponses={setResponses} />}
+        {index === 2 && <Activity2 setResponses={setResponses} />}
+        {index === 3 && <Activity3 setResponses={setResponses} />}
         {/* {index !== 1 && (
           <h2 className="text-xl font-semibold">Activity Header {index}</h2>
         )} */}
