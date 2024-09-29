@@ -1,8 +1,6 @@
 import { useState } from "react";
-import ModuleMenu from "../ModuleComponents/ModuleMenu";
-
-function Activity3({setResponses}) {
-  const [conversation, setConversation] = useState([]);
+function Activity3() {
+  const [conversation, setConversation] = useState<string[]>([]);
   const [mesg, setMesg] = useState("");
 
   const sendMesg = (mesg: string) => {

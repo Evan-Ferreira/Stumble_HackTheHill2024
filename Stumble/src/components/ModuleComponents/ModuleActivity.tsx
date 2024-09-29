@@ -5,6 +5,7 @@ import Activity2 from "../Modules/Activity2";
 
 interface ModuleActivityProps {
   index: number;
+  setResponses: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 const ModuleActivity: React.FC<ModuleActivityProps> = ({ index }) => {

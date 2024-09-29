@@ -16,10 +16,15 @@ const Activity1: React.FC = () => {
     setRecording(true);
   };
 
+  React.useEffect(() => {
+    setTranscription(transcript);
+  }, [transcript]);
+
   const stopRecording = () => {
     stopListening();
     setRecording(false);
     setTranscription(transcript);
+    reset();
   };
 
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import ModuleActivity from "@/components/ModuleComponents/ModuleActivity";
 import ModuleTest from "@/components/ModuleComponents/ModuleTest";
 import ModuleMenu from "@/components/ModuleComponents/ModuleMenu";
@@ -10,7 +11,7 @@ interface ModulePageProps {
 }
 const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
   const content = moduleDescriptions[index - 1];
-  const [responses, setResponses] = useState([]);
+  const [responses, setResponses] = useState<any[]>([]);
   return (
     <div className="flex h-screen flex-col bg-[#1a1a1a] ">
       <ModuleMenu></ModuleMenu>
