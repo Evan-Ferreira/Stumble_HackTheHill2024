@@ -1,10 +1,7 @@
 import { useState } from "react";
 
 function Activity3() {
-  const [conversation, setConversation] = useState([
-    "hi, I'm gavin",
-    "hello there gavin, I'm the AI",
-  ]);
+  const [conversation, setConversation] = useState([]);
   const [mesg, setMesg] = useState("");
 
   const sendMesg = (mesg: string) => {
