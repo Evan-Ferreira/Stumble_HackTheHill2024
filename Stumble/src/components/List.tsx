@@ -134,7 +134,7 @@ const FilterableList: React.FC = () => {
 
       {/* Filtered List */}
       <div className="">
-        <div className="mb-2 flex justify-between gap-4 bg-zinc-800 px-4 py-2 text-[0.8em] text-gray-500">
+        <div className="mb-2 flex justify-between gap-4 bg-zinc-800 px-4 py-2 pr-8 text-[0.8em] text-gray-500">
           <div>Index</div>
           <div className="w-1/2">Name</div>
           <div className="mr-32">Tag</div>
