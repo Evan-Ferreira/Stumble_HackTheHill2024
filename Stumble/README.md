@@ -1,42 +1,75 @@
-<img src="https://og.sznm.dev/api/generate?heading=vite-react-tailwind-starter&text=React+vite+template+with+TailwindCSS+and+TypeScript+setup.&template=color&center=true&height=330" />
+<div align="center"><img src = "https://user-images.githubusercontent.com/31413093/197097625-5b3bd3cf-2bd6-4a3a-8059-a1fe9f28100b.svg" height="100px" alt="My Happy SVG"/></div>
 
-This is a project bootstrapped with [`@vitejs/app`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) (`react-ts`), added with [TailwindCSS](https://tailwindcss.com) and [TypeScript](https://www.typescriptlang.org) setup.
+<h2 align="center">vite-react-framer-starter</h2>
 
-- ⚡ blazing fast dev server and build
-- 🔗 route management added (`react-router-dom` configured)
+<div align="center">
+<a href="https://reactjs.org/"><image src="https://img.shields.io/static/v1?label=React&message=v18&style=flat-square&logo=react&color=61DAFB"/></a> <a href="https://www.typescriptlang.org/"><image src="https://img.shields.io/static/v1?label=TypeScript&message=v5&style=flat-square&logo=typescript&color=3178C6"/></a> <a href="https://www.typescriptlang.org/"><image src="https://img.shields.io/static/v1?label=Tailwind%20CSS&message=v3&style=flat-square&logo=tailwindcss&color=06B6D4"/></a> <a href="https://cn.vitejs.dev/"><image src="https://img.shields.io/static/v1?label=Vite&message=v5&style=flat-square&logo=vite&color=00ccb1"/> <a href="https://cn.vitejs.dev/"><image src="https://img.shields.io/static/v1?label=Framer&message=v11&style=flat-square&logo=framer&color=ff57c8"/></a>
+</div>
 
-[**Live Demo**](https://vite-react-tailwind-starter.sznm.dev/)
+## Introduction
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/sozonome/vite-react-tailwind-starter) [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sozonome/vite-react-tailwind-starter)
+A starter [Vite](https://vitejs.dev/) template having:
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/sozonome/vite-react-tailwind-starter)
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
 
-## Getting Started
+and some elegant framer motion [examples components](https://github.com/matozz/vite-react-framer-starter/tree/main/src/components)
 
-You can either click [`Use this template`](https://github.com/sozonome/vite-react-tailwind-starter/generate) button on this repository and clone the repo or use npx degit like so:
+## Install
 
-```bash
-npx degit sozonome/vite-react-tailwind-starter <app_name>
+> This project uses [node](http://nodejs.org) and a package manager ([npm](https://npmjs.com), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)). Go check them out if you don't have them locally installed.
+
+Then you need a copy of this repository. You can [download](https://github.com/matozz/vite-react-framer-starter) a copy as zip but [degit](https://github.com/Rich-Harris/degit) is recommended.
+
+After you installed degit, please excute the following commandd:
+
+```sh
+$ cd path-to-save-your-project
+$ degit matozz/vite-react-framer-starter your-project-name
 ```
 
+After getting a copy of this repository, you can use your package manager to install dependecies:
+
+```sh
+$ cd path-to-your-project
+$ pnpm install
+
+# npm install
+# yarn install
 ```
-pnpm i
+
+## Usage
+
+Let's run!
+
+```sh
+$ pnpm run dev
+
+# npm run dev
+# yarn run dev
 ```
 
-Then, run the development server:
+> We've already implemented some recommended configurations in `.eslintrc`, `.eslintignore` and `.prettierrc`. Feel free to edit them if you have your own preferences.
 
-```bash
-pnpm dev
-```
+## Related Efforts
 
-## Deployment
+- [Vite](https://github.com/vitejs/vite)
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+- [Framer Motion](https://github.com/framer/motion)
 
-- build command: `pnpm build`
-- output directory: `dist`
+## Related Docs
 
-## References
+- [Vite](https://vitejs.dev/guide/)
+- [Tailwind CSS](https://tailwindcss.com/docs/installation)
+- [Framer Motion](https://www.framer.com/motion/)
 
-- [vite](https://vitejs.dev)
-  - [avoid manual import](https://vitejs.dev/guide/features.html#jsx)
-- [TailwindCSS](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org)
+## Contributing
+
+Feel free to dive in! [Open an issue](https://github.com/matozz/vite-react-framer-starter) or submit PRs.
+
+## License
+
+[MIT](LICENSE) © Matoz
