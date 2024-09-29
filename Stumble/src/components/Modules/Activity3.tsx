@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ModuleMenu from "../ModuleComponents/ModuleMenu";
 
 function Activity3({setResponses}) {
   const [conversation, setConversation] = useState([]);
@@ -40,6 +41,17 @@ function Activity3({setResponses}) {
 
   return (
     <div className="flex h-[16rem] w-full flex-col bg-zinc-800 px-8 pt-4 text-white">
+      <ModuleMenu
+      submit={()=>{
+            (axios.post("http://localhost:3000/answer", {
+            question: 3,
+            input: conversation
+          })).then(res=>{
+            setResponses(res.data)
+          })
+          setLoading(true);
+        }
+      }/>
       <div className="h-full flex-1 overflow-y-scroll rounded-lg bg-zinc-700 p-4 shadow-md">
         {conversation.map((text, i) => {
           const isYou = i % 2 === 0;

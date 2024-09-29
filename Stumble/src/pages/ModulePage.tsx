@@ -12,8 +12,8 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
   const content = moduleDescriptions[index - 1];
   const [responses, setResponses] = useState([]);
   return (
-    <div className="flex h-screen flex-col bg-[#1a1a1a] ">
-      <ModuleMenu></ModuleMenu>
+    <div className="h-screen bg-[#1a1a1a] flex flex-col">
+      <div className="h-16"></div>
 
       <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
