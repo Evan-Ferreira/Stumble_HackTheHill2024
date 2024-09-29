@@ -5,14 +5,27 @@ function Activity3({setResponses}) {
   const [conversation, setConversation] = useState([]);
   const [mesg, setMesg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [IDs, setIDs] = useState({assistantID: null, threadID: null});
+
   useEffect(()=>{
+    if (conversation.length === 6){
+      setLoading(true);
+      
+        (axios.post("http://localhost:3000/answer", {
+          question: 3,
+          input: conversation
+        })).then(res=>{
+          setResponses(res.data)
+        })
+    }
     if (conversation.length % 2 !== 0){
       axios.post("http://localhost:3000/questions/q3", {
-        assistantID: null,
-        threadID: null,
+        assistantID: IDs.assistantID,
+        threadID: IDs.threadID,
         message: conversation[conversation.length - 1]
       }).then((res) => {
         setConversation([...conversation, res.data.message]);
+        setIDs({assistantID: res.data.assistantID, threadID: res.data.threadID});
         setLoading(false);
       })
     }

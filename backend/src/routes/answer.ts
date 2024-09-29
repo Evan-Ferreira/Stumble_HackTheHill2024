@@ -1,25 +1,19 @@
-import express from 'express';
-import qs from 'querystring';
-import textToSpeech from '../controllers/textToSpeech';
+import express from "express";
+import qs from "querystring";
+import textToSpeech from "../controllers/textToSpeech";
+import getGrades from "../controllers/answer/getGrades";
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
-    try {
-        const input = qs.stringify(req.body);
-        const filePath = await textToSpeech(input, 'Rachel');
-        res.sendFile(filePath, (err) => {
-            if (err) {
-                console.error('Error sending the file:', err);
-                res.status(500).send(
-                    'Error occurred while sending the MP3 file.'
-                );
-            }
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    }
+router.post("/", async (req, res) => {
+  try {
+    const { question, input } = req.body;
+    const response = await getGrades(Number(question), qs.stringify(input));
+    res.json(response);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 export default router;
