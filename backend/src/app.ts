@@ -1,8 +1,9 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import openAIRoute from './routes/openai';
+import questionsRoute from './routes/questions';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -18,11 +19,12 @@ try {
 }
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
     res.send('hello world');
 });
-app.use('/openai', openAIRoute);
+app.use('/questions', questionsRoute);
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
