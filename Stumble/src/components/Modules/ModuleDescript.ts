@@ -11,6 +11,7 @@ export const moduleDescriptions = [
     exampleOutput: "Hello Jeff!",
     exampleExplanation: "You have said hello to a woman and she said hi back!",
     img: "Mod1.jpeg",
+    audiopath: "module1.mp3",
   },
   {
     title: "2. Give a Compliment",
