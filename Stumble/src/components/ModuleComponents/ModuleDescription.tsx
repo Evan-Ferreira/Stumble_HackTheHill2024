@@ -1,15 +1,20 @@
+import AudioPlayer from "../AudioPlayer";
 export default function ModuleDescription({
   description,
   title,
   exampleInput,
   exampleOutput,
   exampleExplanation,
+  img,
+  audiopath,
 }: {
   description: string;
   title: string;
   exampleInput: string;
   exampleOutput: string;
   exampleExplanation: string;
+  img?: string;
+  audiopath?: string;
 }) {
   return (
     <div className="h-full rounded-lg border border-gray-500 bg-zinc-800 text-white">
@@ -23,6 +28,15 @@ export default function ModuleDescription({
 
       <div className="h-auto rounded-b-lg p-8 text-white">
         <h1 className="mb-6 text-2xl">{title}</h1>
+        {img && (
+          <img
+            src={img}
+            alt="No Image"
+            className="mb-6 h-48 w-48 rounded-full"
+          />
+        )}
+        {audiopath && <AudioPlayer audioPath={audiopath} />}
+
         <p className="m-6">{description}</p>
         <h2 className="mb-2">Example:</h2>
         <div className="border-l-2 pl-4">
