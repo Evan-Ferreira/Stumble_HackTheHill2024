@@ -16,7 +16,7 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
 
       <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
-        <aside className="h-full max-h-[87.7vh] w-1/2 text-left">
+        <aside className="h-full w-1/2 overflow-y-auto text-left">
           <ModuleDescription
             title={content.title}
             description={content.description}
