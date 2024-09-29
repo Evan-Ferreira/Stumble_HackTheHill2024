@@ -23,6 +23,8 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
             exampleInput={content.exampleInput}
             exampleOutput={content.exampleOutput}
             exampleExplanation={content.exampleExplanation}
+            img={content.img}
+            audiopath={content.audiopath}
           />
         </aside>
 
@@ -34,7 +36,7 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
 
           {/* Test Cases */}
           <div className=" flex h-1/2 ">
-            <ModuleTest></ModuleTest>
+            <ModuleTest gindex={index}></ModuleTest>
           </div>
         </main>
       </div>

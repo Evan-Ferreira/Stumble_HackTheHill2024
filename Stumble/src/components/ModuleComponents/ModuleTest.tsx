@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import TestDisplay from "./TestDisplay";
+import { moduleDescriptions } from "../Modules/ModuleDescript";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+}
+interface ModuleProps {
+  gindex: number;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -34,7 +38,7 @@ function a11yProps(index: number) {
   };
 }
 
-const ModuleTest: React.FC = () => {
+const ModuleTest: React.FC<ModuleProps> = ({ gindex }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (index: number) => {
@@ -86,13 +90,28 @@ const ModuleTest: React.FC = () => {
         </nav>
       </div>
       <TabPanel value={value} index={0}>
-        <TestDisplay score={null}></TestDisplay>
+        <TestDisplay
+          description={moduleDescriptions[gindex].description}
+          title={moduleDescriptions[gindex].title}
+          score={null}
+          testnum={1}
+        ></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TestDisplay score={null}></TestDisplay>
+        <TestDisplay
+          description={moduleDescriptions[gindex].description}
+          title={moduleDescriptions[gindex].title}
+          score={null}
+          testnum={2}
+        ></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TestDisplay score={null}></TestDisplay>
+        <TestDisplay
+          description={moduleDescriptions[gindex].description}
+          title={moduleDescriptions[gindex].title}
+          score={null}
+          testnum={3}
+        ></TestDisplay>
       </TabPanel>
     </div>
   );

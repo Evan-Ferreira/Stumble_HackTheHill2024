@@ -15,6 +15,8 @@ export const moduleDescriptions = [
       "Sure, go straight and turn left at the second intersection.",
     exampleExplanation:
       "You have successfully asked for directions and received a helpful response.",
+    img: "https://via.placeholder.com/150",
+    audiopath: "https://www.soundjay.com/button/beep-07.wav",
   },
   {
     title: "3. Order Food",

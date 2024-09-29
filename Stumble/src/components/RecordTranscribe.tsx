@@ -1,8 +1,9 @@
+import React from "react";
 import { Mic, MicOff } from "lucide-react";
 import { useVoiceToText } from "react-speakup";
 
-const VoiceToText = () => {
-  const { startListening, stopListening, transcript } = useVoiceToText({
+const Recorder = () => {
+  const { startListening, stopListening, transcript, reset } = useVoiceToText({
     continuous: true,
     lang: "en-US",
   });
@@ -19,4 +20,4 @@ const VoiceToText = () => {
   );
 };
 
-export default VoiceToText;
+export default Recorder;
