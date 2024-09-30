@@ -14,7 +14,7 @@ const Logo: React.FC = () => {
   );
 };
 
-const Submission: React.FC = () => {
+const Submission: React.FC = ({submit} : {submit: ()=>void}) => {
   return (
     <div className="flex space-x-4 rounded-lg bg-white bg-opacity-10">
       <button className="flex items-center rounded-lg px-4 py-2 font-bold text-white">
@@ -36,7 +36,15 @@ const Submission: React.FC = () => {
       </button>
       <button
         type="submit"
-        className="flex items-center rounded-lg px-4 py-2 font-bold text-green-500 transition-all hover:bg-green-500 hover:text-white"
+        className={"flex items-center rounded-lg px-4 py-2 font-bold text-green-500 transition-all hover:bg-green-500 hover:text-white"}
+        onClick={(evt)=>{
+            submit()
+            evt.currentTarget.disabled = true;
+            evt.currentTarget.classList.add("opacity-50")
+            evt.currentTarget.classList.remove("hover:bg-green-500")
+          }
+        }
+        
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,9 +129,9 @@ const Profile: React.FC = () => {
 };
 
 // ModuleMenu Component
-const ModuleMenu: React.FC = () => {
+const ModuleMenu: React.FC = ({submit} : {submit: ()=>void}) => {
   return (
-    <header className=" w-screen bg-[#302c2c] p-2 text-white">
+    <header className=" w-screen bg-[#302c2c] p-2 text-white absolute top-0 left-0">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center justify-start">
           <Logo />
@@ -131,7 +139,7 @@ const ModuleMenu: React.FC = () => {
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 transform">
-          <Submission></Submission>
+          <Submission submit={submit}></Submission>
         </div>
 
         <div className="flex items-center justify-around space-x-12">

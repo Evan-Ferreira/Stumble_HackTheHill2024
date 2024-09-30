@@ -107,7 +107,6 @@ const HomePage: React.FC = () => {
             }
           ></Calender>
           <section className="mt-8">
-            <h1 className="mb-2 text-[1em] text-white">User Stats</h1>
             <Stats></Stats>
           </section>
         </div>

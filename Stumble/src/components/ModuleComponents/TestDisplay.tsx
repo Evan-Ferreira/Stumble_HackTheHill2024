@@ -5,6 +5,7 @@ interface TestDisplayProps {
   description?: string;
   title: string;
   testnum: number;
+  feedback: string;
 }
 
 const TestDisplay: React.FC<TestDisplayProps> = ({
@@ -12,6 +13,7 @@ const TestDisplay: React.FC<TestDisplayProps> = ({
   description,
   testnum,
   title,
+  feedback,
 }) => {
   const baseStyle = "p-4 rounded-lg shadow-lg text-center";
   const passStyle = "bg-green-200 text-green-800";
@@ -22,7 +24,7 @@ const TestDisplay: React.FC<TestDisplayProps> = ({
     <div
       className={`${baseStyle} ${score === null ? neutralStyle : score > 65 ? passStyle : failStyle}`}
     >
-      {score === null ? (
+      {!score ? (
         <div className="font-semibold">
           <h1 className="text-2xl">
             {" "}
@@ -35,13 +37,21 @@ const TestDisplay: React.FC<TestDisplayProps> = ({
           </p>
         </div>
       ) : score > 65 ? (
-        <div className="text-xl font-bold">
-          Congratulations! You have passed the test.
-        </div>
+        <>
+          <div className="text-xl font-bold">Your Score: {score}%</div>
+          <div className="text-xl font-bold text-green-400">
+            Congratulations! You have passed the test.
+          </div>
+          <div className="text-black">{feedback}</div>
+        </>
       ) : (
-        <div className="text-xl font-bold">
-          Unfortunately, you did not pass the test. Please try again.
-        </div>
+        <>
+          <div className="text-xl font-bold">Your Score: {score}%</div>
+          <div className="text-xl font-bold">
+            Unfortunately, you did not pass the test. Please try again.
+          </div>
+          <div className="text-black">{feedback}</div>
+        </>
       )}
     </div>
   );

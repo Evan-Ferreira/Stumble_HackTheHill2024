@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import ModuleActivity from "@/components/ModuleComponents/ModuleActivity";
 import ModuleTest from "@/components/ModuleComponents/ModuleTest";
 import ModuleMenu from "@/components/ModuleComponents/ModuleMenu";
@@ -13,12 +12,12 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
   const content = moduleDescriptions[index - 1];
   const [responses, setResponses] = useState<any[]>([]);
   return (
-    <div className="flex h-screen flex-col bg-[#1a1a1a] ">
-      <ModuleMenu></ModuleMenu>
+    <div className="flex h-screen flex-col bg-[#1a1a1a]">
+      <div className="h-16"></div>
 
       <div className="flex flex-grow p-4  ">
         {/* Problem Description */}
-        <aside className="h-full max-h-[87.7vh] w-1/2 text-left">
+        <aside className="h-full w-1/2 overflow-y-auto text-left">
           <ModuleDescription
             title={content.title}
             description={content.description}
@@ -41,7 +40,7 @@ const ModulePage: React.FC<ModulePageProps> = ({ index }) => {
 
           {/* Test Cases */}
           <div className=" flex h-1/2 ">
-            <ModuleTest gindex={index}></ModuleTest>
+            <ModuleTest gindex={index} responses={responses}></ModuleTest>
           </div>
         </main>
       </div>

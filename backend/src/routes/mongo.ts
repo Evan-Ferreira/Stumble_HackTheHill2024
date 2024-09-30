@@ -1,10 +1,10 @@
 import express from 'express';
-import OpenAI from '../models/OpenAI';
+import Welp from '../models/Welp';
 
 const router = express.Router();
 
 router.get('/:question', async (req, res) => {
-    const question = await OpenAI.findOne({
+    const question = await Welp.findOne({
         question: Number(req.params.question),
     });
     if (!question) {

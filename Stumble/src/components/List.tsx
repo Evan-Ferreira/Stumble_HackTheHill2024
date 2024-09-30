@@ -27,7 +27,7 @@ const initialItems: Item[] = [
   },
   {
     id: 3,
-    name: "Ask a good question!",
+    name: "Texting: Set Up A Date!",
     tag: "Communication",
     difficulty: "Medium",
     status: "NC",

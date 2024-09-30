@@ -4,6 +4,8 @@ import questionsRoute from './routes/questions';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import answerRouter from './routes/answer';
+import mongoRouter from './routes/mongo';
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ app.get('/', (req: Request, res: Response) => {
     res.send('hello world');
 });
 app.use('/questions', questionsRoute);
+app.use('/answer', answerRouter);
+app.use('/mongo', mongoRouter);
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);

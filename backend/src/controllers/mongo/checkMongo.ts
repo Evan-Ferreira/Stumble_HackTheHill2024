@@ -1,4 +1,4 @@
-import OpenAI from '../../models/OpenAI';
+import OpenAI from '../../models/Welp';
 
 const questionExists = async (question: Number) => {
     const openAI = await OpenAI.findOne({ question });

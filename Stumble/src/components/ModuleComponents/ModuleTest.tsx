@@ -9,6 +9,7 @@ interface TabPanelProps {
 }
 interface ModuleProps {
   gindex: number;
+  responses: any[];
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -38,7 +39,7 @@ function a11yProps(index: number) {
   };
 }
 
-const ModuleTest: React.FC<ModuleProps> = ({ gindex }) => {
+const ModuleTest: React.FC<ModuleProps> = ({ gindex, responses }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (index: number) => {
@@ -93,24 +94,27 @@ const ModuleTest: React.FC<ModuleProps> = ({ gindex }) => {
         <TestDisplay
           description={moduleDescriptions[gindex - 1].description}
           title={moduleDescriptions[gindex - 1].title}
-          score={null}
+          score={responses.length ? responses[0].score : ""}
           testnum={1}
+          feedback={responses.length ? responses[0].feedback : ""}
         ></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <TestDisplay
           description={moduleDescriptions[gindex - 1].description}
           title={moduleDescriptions[gindex - 1].title}
-          score={null}
+          score={responses.length ? responses[1].score : ""}
           testnum={2}
+          feedback={responses.length ? responses[1].feedback : ""}
         ></TestDisplay>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <TestDisplay
           description={moduleDescriptions[gindex - 1].description}
           title={moduleDescriptions[gindex - 1].title}
-          score={null}
+          score={responses.length ? responses[2].score : ""}
           testnum={3}
+          feedback={responses.length ? responses[2].feedback : ""}
         ></TestDisplay>
       </TabPanel>
     </div>
